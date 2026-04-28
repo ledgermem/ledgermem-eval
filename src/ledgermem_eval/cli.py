@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+import random
 import sys
 from pathlib import Path
 
@@ -15,6 +17,14 @@ from ledgermem_eval.output import write_results
 from ledgermem_eval.scoring import score_run
 
 console = Console()
+
+# Default seed makes leaderboard rankings reproducible across hosts. Adapters
+# and benchmark fixtures may sample from `random` (e.g. baseline retrieval),
+# and without seeding, two runs of the same (system, benchmark) pair can
+# produce different retrieved_ids and therefore different recall/precision —
+# which then reorders the leaderboard non-deterministically. Override via
+# LEDGERMEM_EVAL_SEED if you explicitly want stochastic runs.
+DEFAULT_EVAL_SEED = 1337
 
 
 @click.group()
@@ -85,6 +95,16 @@ def cmd_run(
     mock: bool,
 ) -> None:
     """Execute a benchmark across one or more systems."""
+    seed_env = os.environ.get("LEDGERMEM_EVAL_SEED")
+    seed = int(seed_env) if seed_env and seed_env.isdigit() else DEFAULT_EVAL_SEED
+    random.seed(seed)
+    try:
+        import numpy as np  # type: ignore[import-not-found]
+
+        np.random.seed(seed)
+    except ImportError:
+        pass
+
     if mock:
         chosen_systems = ["mock"]
     elif systems == "all":

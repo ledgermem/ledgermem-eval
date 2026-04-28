@@ -6,13 +6,22 @@ type Props = {
 };
 
 export function ResultTable({ rows, sortBy = "f1" }: Props) {
+  // Stable sort with a deterministic tie-breaker so the leaderboard order does
+  // not jitter between renders or runs when two systems share the same score.
+  // Tie-break: ascending system name, then ascending runId.
   const sorted = [...rows].sort((a, b) => {
     const av = a[sortBy];
     const bv = b[sortBy];
+    let primary = 0;
     if (typeof av === "number" && typeof bv === "number") {
-      return sortBy === "p50" || sortBy === "p95" ? av - bv : bv - av;
+      primary = sortBy === "p50" || sortBy === "p95" ? av - bv : bv - av;
+    } else {
+      primary = String(av).localeCompare(String(bv));
     }
-    return String(av).localeCompare(String(bv));
+    if (primary !== 0) return primary;
+    const systemCmp = a.system.localeCompare(b.system);
+    if (systemCmp !== 0) return systemCmp;
+    return a.runId.localeCompare(b.runId);
   });
 
   return (
