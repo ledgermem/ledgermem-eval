@@ -96,7 +96,16 @@ def cmd_run(
 ) -> None:
     """Execute a benchmark across one or more systems."""
     seed_env = os.environ.get("LEDGERMEM_EVAL_SEED")
-    seed = int(seed_env) if seed_env and seed_env.isdigit() else DEFAULT_EVAL_SEED
+    # `str.isdigit()` rejects negative seeds and any leading whitespace, so
+    # it silently falls back to the default. Use a try/except so we honor any
+    # signed integer the operator passes.
+    if seed_env:
+        try:
+            seed = int(seed_env)
+        except ValueError:
+            seed = DEFAULT_EVAL_SEED
+    else:
+        seed = DEFAULT_EVAL_SEED
     random.seed(seed)
     try:
         import numpy as np  # type: ignore[import-not-found]
@@ -104,6 +113,11 @@ def cmd_run(
         np.random.seed(seed)
     except ImportError:
         pass
+    # pandas 2.x no longer routes `DataFrame.sample()` through `np.random` by
+    # default — it uses a fresh `np.random.default_rng()` per call unless an
+    # explicit `random_state` is supplied. Surface the seed via an env var so
+    # adapters that use pandas can pick it up and stay reproducible.
+    os.environ.setdefault("LEDGERMEM_EVAL_RANDOM_STATE", str(seed))
 
     if mock:
         chosen_systems = ["mock"]

@@ -128,11 +128,15 @@ def score_run(run: RunRecord) -> RunMetrics:
 
     mean_recall = statistics.mean(recalls)
     mean_precision = statistics.mean(precisions)
-    f1 = (
-        2 * mean_recall * mean_precision / (mean_recall + mean_precision)
-        if (mean_recall + mean_precision) > 0
-        else 0.0
-    )
+    # Compute F1 per-episode then average (macro-F1) — taking the harmonic
+    # mean of `mean(recall)` and `mean(precision)` is statistically meaningless
+    # because the two means are not paired observations. Macro-F1 is the
+    # standard reporting metric for retrieval benchmarks.
+    per_episode_f1 = [
+        (2 * r * p / (r + p)) if (r + p) > 0 else 0.0
+        for r, p in zip(recalls, precisions)
+    ]
+    f1 = statistics.mean(per_episode_f1) if per_episode_f1 else 0.0
 
     return RunMetrics(
         system=run.system,
