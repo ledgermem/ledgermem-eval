@@ -18,7 +18,7 @@ COPY tests ./tests
 RUN pip install --upgrade pip \
     && pip install -e ".[dev]"
 
-ENV LEDGERMEM_BASE_URL=https://api.proofly.dev
+ENV GETMNEMO_BASE_URL=https://api.getmnemo.xyz
 
-ENTRYPOINT ["ledgermem-eval"]
+ENTRYPOINT ["getmnemo-eval"]
 CMD ["run", "--benchmark", "longmemeval", "--mock", "--output", "/work/results"]

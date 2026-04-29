@@ -4,15 +4,15 @@ from __future__ import annotations
 
 from typing import Callable
 
-from ledgermem_eval.adapters.base import Adapter
-from ledgermem_eval.adapters.baseline_adapter import BaselineAdapter
-from ledgermem_eval.adapters.ledgermem_adapter import LedgerMemAdapter
-from ledgermem_eval.adapters.mem0_adapter import Mem0Adapter
-from ledgermem_eval.adapters.openai_assistants_adapter import OpenAIAssistantsAdapter
-from ledgermem_eval.adapters.zep_adapter import ZepAdapter
+from getmnemo_eval.adapters.base import Adapter
+from getmnemo_eval.adapters.baseline_adapter import BaselineAdapter
+from getmnemo_eval.adapters.getmnemo_adapter import MnemoAdapter
+from getmnemo_eval.adapters.mem0_adapter import Mem0Adapter
+from getmnemo_eval.adapters.openai_assistants_adapter import OpenAIAssistantsAdapter
+from getmnemo_eval.adapters.zep_adapter import ZepAdapter
 
 _ADAPTERS: dict[str, tuple[Callable[[], Adapter], str]] = {
-    "ledgermem": (LedgerMemAdapter, "LedgerMem managed memory (api.proofly.dev)"),
+    "getmnemo": (MnemoAdapter, "Mnemo managed memory (api.getmnemo.xyz)"),
     "mem0": (Mem0Adapter, "Mem0 OSS memory layer"),
     "zep": (ZepAdapter, "Zep memory store"),
     "openai-assistants": (OpenAIAssistantsAdapter, "OpenAI Assistants thread memory"),

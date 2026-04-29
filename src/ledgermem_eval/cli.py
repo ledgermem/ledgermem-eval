@@ -1,4 +1,4 @@
-"""Command-line interface for the LedgerMem evaluation harness."""
+"""Command-line interface for the Mnemo evaluation harness."""
 
 from __future__ import annotations
 
@@ -11,10 +11,10 @@ import click
 from rich.console import Console
 from rich.table import Table
 
-from ledgermem_eval.adapters import build_adapter, list_adapters
-from ledgermem_eval.benchmarks import build_benchmark, list_benchmarks
-from ledgermem_eval.output import write_results
-from ledgermem_eval.scoring import score_run
+from getmnemo_eval.adapters import build_adapter, list_adapters
+from getmnemo_eval.benchmarks import build_benchmark, list_benchmarks
+from getmnemo_eval.output import write_results
+from getmnemo_eval.scoring import score_run
 
 console = Console()
 
@@ -23,14 +23,14 @@ console = Console()
 # and without seeding, two runs of the same (system, benchmark) pair can
 # produce different retrieved_ids and therefore different recall/precision —
 # which then reorders the leaderboard non-deterministically. Override via
-# LEDGERMEM_EVAL_SEED if you explicitly want stochastic runs.
+# GETMNEMO_EVAL_SEED if you explicitly want stochastic runs.
 DEFAULT_EVAL_SEED = 1337
 
 
 @click.group()
 @click.version_option()
 def cli() -> None:
-    """ledgermem-eval — run memory benchmarks and produce comparable results."""
+    """getmnemo-eval — run memory benchmarks and produce comparable results."""
 
 
 @cli.command("list-benchmarks")
@@ -95,7 +95,7 @@ def cmd_run(
     mock: bool,
 ) -> None:
     """Execute a benchmark across one or more systems."""
-    seed_env = os.environ.get("LEDGERMEM_EVAL_SEED")
+    seed_env = os.environ.get("GETMNEMO_EVAL_SEED")
     # `str.isdigit()` rejects negative seeds and any leading whitespace, so
     # it silently falls back to the default. Use a try/except so we honor any
     # signed integer the operator passes.
@@ -117,7 +117,7 @@ def cmd_run(
     # default — it uses a fresh `np.random.default_rng()` per call unless an
     # explicit `random_state` is supplied. Surface the seed via an env var so
     # adapters that use pandas can pick it up and stay reproducible.
-    os.environ.setdefault("LEDGERMEM_EVAL_RANDOM_STATE", str(seed))
+    os.environ.setdefault("GETMNEMO_EVAL_RANDOM_STATE", str(seed))
 
     if mock:
         chosen_systems = ["mock"]

@@ -7,7 +7,7 @@ from typing import Any
 
 import httpx
 
-from ledgermem_eval.adapters.base import Adapter, MemoryItem, SearchResult
+from getmnemo_eval.adapters.base import Adapter, MemoryItem, SearchResult
 
 
 class OpenAIAssistantsAdapter(Adapter):
@@ -80,7 +80,7 @@ class OpenAIAssistantsAdapter(Adapter):
         )
         response.raise_for_status()
         messages = response.json().get("data", [])
-        from ledgermem_eval.adapters.baseline_adapter import _cosine, _tokens
+        from getmnemo_eval.adapters.baseline_adapter import _cosine, _tokens
 
         query_tokens = _tokens(query)
         scored: list[tuple[float, dict[str, Any]]] = []

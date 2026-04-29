@@ -31,13 +31,13 @@ jobs:
         run: ruff check src tests
 
       - name: Test
-        run: pytest -v --cov=ledgermem_eval --cov-report=xml
+        run: pytest -v --cov=getmnemo_eval --cov-report=xml
 
       - name: Smoke run (mock adapter)
         run: |
-          ledgermem-eval list-benchmarks
-          ledgermem-eval list-systems
-          ledgermem-eval run --benchmark longmemeval --mock --output ./results
+          getmnemo-eval list-benchmarks
+          getmnemo-eval list-systems
+          getmnemo-eval run --benchmark longmemeval --mock --output ./results
 
       - name: Upload coverage
         uses: actions/upload-artifact@v4

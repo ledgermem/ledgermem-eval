@@ -52,20 +52,20 @@ export default function MethodologyPage() {
 
       <h2>Reproducibility</h2>
       <pre>
-        <code>{`docker pull ledgermem/eval:latest
+        <code>{`docker pull getmnemo/eval:latest
 docker run --rm \\
-  -e LEDGERMEM_API_KEY=... \\
-  -e LEDGERMEM_WORKSPACE_ID=... \\
+  -e GETMNEMO_API_KEY=... \\
+  -e GETMNEMO_WORKSPACE_ID=... \\
   -e MEM0_API_KEY=... \\
   -e ZEP_API_KEY=... \\
   -e OPENAI_API_KEY=... \\
   -v "$PWD/results:/work/results" \\
-  ledgermem/eval run --benchmark longmemeval --systems all --output /work/results`}</code>
+  getmnemo/eval run --benchmark longmemeval --systems all --output /work/results`}</code>
       </pre>
 
       <h2>Submitting a system</h2>
       <ol>
-        <li>Open a PR adding an adapter under <code>src/ledgermem_eval/adapters/</code>.</li>
+        <li>Open a PR adding an adapter under <code>src/getmnemo_eval/adapters/</code>.</li>
         <li>Provide a free-tier or trial key the cron job can use.</li>
         <li>The quarterly cron will start including your system automatically.</li>
       </ol>

@@ -1,4 +1,4 @@
-"""LedgerMem adapter — talks to api.proofly.dev via the public REST API."""
+"""Mnemo adapter — talks to api.getmnemo.xyz via the public REST API."""
 
 from __future__ import annotations
 
@@ -7,13 +7,13 @@ from typing import Any
 
 import httpx
 
-from ledgermem_eval.adapters.base import Adapter, MemoryItem, SearchResult
+from getmnemo_eval.adapters.base import Adapter, MemoryItem, SearchResult
 
 
-class LedgerMemAdapter(Adapter):
-    """Adapter for LedgerMem managed memory."""
+class MnemoAdapter(Adapter):
+    """Adapter for Mnemo managed memory."""
 
-    name = "ledgermem"
+    name = "getmnemo"
 
     def __init__(
         self,
@@ -23,17 +23,17 @@ class LedgerMemAdapter(Adapter):
         workspace_id: str | None = None,
         timeout: float = 30.0,
     ) -> None:
-        self._base_url = (base_url or os.environ.get("LEDGERMEM_BASE_URL", "https://api.proofly.dev")).rstrip("/")
-        self._api_key = api_key or os.environ.get("LEDGERMEM_API_KEY", "")
-        self._workspace_id = workspace_id or os.environ.get("LEDGERMEM_WORKSPACE_ID", "")
+        self._base_url = (base_url or os.environ.get("GETMNEMO_BASE_URL", "https://api.getmnemo.xyz")).rstrip("/")
+        self._api_key = api_key or os.environ.get("GETMNEMO_API_KEY", "")
+        self._workspace_id = workspace_id or os.environ.get("GETMNEMO_WORKSPACE_ID", "")
         self._timeout = timeout
         self._client: httpx.Client | None = None
 
     def setup(self) -> None:
         if not self._api_key or not self._workspace_id:
             raise RuntimeError(
-                "LEDGERMEM_API_KEY and LEDGERMEM_WORKSPACE_ID must be set "
-                "to use the LedgerMem adapter."
+                "GETMNEMO_API_KEY and GETMNEMO_WORKSPACE_ID must be set "
+                "to use the Mnemo adapter."
             )
         self._client = httpx.Client(
             base_url=self._base_url,

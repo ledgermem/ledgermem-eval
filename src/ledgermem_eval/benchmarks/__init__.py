@@ -4,15 +4,15 @@ from __future__ import annotations
 
 from typing import Callable
 
-from ledgermem_eval.benchmarks.base import Benchmark
-from ledgermem_eval.benchmarks.locomo import LocomoBenchmark
-from ledgermem_eval.benchmarks.longmemeval import LongMemEvalBenchmark
-from ledgermem_eval.benchmarks.realagentmem import RealAgentMemBenchmark
+from getmnemo_eval.benchmarks.base import Benchmark
+from getmnemo_eval.benchmarks.locomo import LocomoBenchmark
+from getmnemo_eval.benchmarks.longmemeval import LongMemEvalBenchmark
+from getmnemo_eval.benchmarks.realagentmem import RealAgentMemBenchmark
 
 _BENCHMARKS: dict[str, tuple[Callable[..., Benchmark], str]] = {
     "longmemeval": (LongMemEvalBenchmark, "Long-context multi-session memory recall"),
     "locomo": (LocomoBenchmark, "Conversational memory benchmark"),
-    "realagentmem": (RealAgentMemBenchmark, "Real-agent task memory (LedgerMem custom)"),
+    "realagentmem": (RealAgentMemBenchmark, "Real-agent task memory (Mnemo custom)"),
 }
 
 

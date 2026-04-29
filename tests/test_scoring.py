@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from ledgermem_eval.scoring import EpisodeResult, RunRecord, _percentile, score_run
+from getmnemo_eval.scoring import EpisodeResult, RunRecord, _percentile, score_run
 
 
 def make_episode(
@@ -95,8 +95,8 @@ class TestScoreRun:
 
 def test_full_baseline_run_smoke() -> None:
     """End-to-end smoke test using the baseline adapter and longmemeval."""
-    from ledgermem_eval.adapters.baseline_adapter import BaselineAdapter
-    from ledgermem_eval.benchmarks.longmemeval import LongMemEvalBenchmark
+    from getmnemo_eval.adapters.baseline_adapter import BaselineAdapter
+    from getmnemo_eval.benchmarks.longmemeval import LongMemEvalBenchmark
 
     benchmark = LongMemEvalBenchmark()
     adapter = BaselineAdapter()

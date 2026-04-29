@@ -7,7 +7,7 @@ import uuid
 
 import httpx
 
-from ledgermem_eval.adapters.base import Adapter, MemoryItem, SearchResult
+from getmnemo_eval.adapters.base import Adapter, MemoryItem, SearchResult
 
 
 class ZepAdapter(Adapter):
@@ -25,7 +25,7 @@ class ZepAdapter(Adapter):
     ) -> None:
         self._api_key = api_key or os.environ.get("ZEP_API_KEY", "")
         self._base_url = base_url.rstrip("/")
-        self._session_id = session_id or f"ledgermem-eval-{uuid.uuid4().hex[:8]}"
+        self._session_id = session_id or f"getmnemo-eval-{uuid.uuid4().hex[:8]}"
         self._timeout = timeout
         self._client: httpx.Client | None = None
         self._created_session = False

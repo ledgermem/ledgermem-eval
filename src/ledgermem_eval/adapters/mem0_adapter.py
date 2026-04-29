@@ -7,7 +7,7 @@ from typing import Any
 
 import httpx
 
-from ledgermem_eval.adapters.base import Adapter, MemoryItem, SearchResult
+from getmnemo_eval.adapters.base import Adapter, MemoryItem, SearchResult
 
 
 class Mem0Adapter(Adapter):
@@ -24,7 +24,7 @@ class Mem0Adapter(Adapter):
         timeout: float = 30.0,
     ) -> None:
         self._api_key = api_key or os.environ.get("MEM0_API_KEY", "")
-        self._user_id = user_id or os.environ.get("MEM0_USER_ID", "ledgermem-eval")
+        self._user_id = user_id or os.environ.get("MEM0_USER_ID", "getmnemo-eval")
         self._base_url = base_url.rstrip("/")
         self._timeout = timeout
         self._client: httpx.Client | None = None

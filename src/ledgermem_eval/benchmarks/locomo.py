@@ -5,8 +5,8 @@ We ship a synthetic 5-conversation fixture that exercises cross-session recall.
 
 from __future__ import annotations
 
-from ledgermem_eval.adapters.base import MemoryItem
-from ledgermem_eval.benchmarks.base import Benchmark, Question, Suite
+from getmnemo_eval.adapters.base import MemoryItem
+from getmnemo_eval.benchmarks.base import Benchmark, Question, Suite
 
 _TURNS: tuple[tuple[str, str, str], ...] = (
     # (id, conversation_id, content)

@@ -3,14 +3,14 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "ledgermem-eval"
+name = "getmnemo-eval"
 version = "0.1.0"
-description = "Public benchmark harness for memory systems (LedgerMem, Mem0, Zep, OpenAI Assistants)"
+description = "Public benchmark harness for memory systems (Mnemo, Mem0, Zep, OpenAI Assistants)"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
-authors = [{ name = "LedgerMem", email = "founders@proofly.dev" }]
-keywords = ["memory", "llm", "benchmark", "evaluation", "ledgermem"]
+authors = [{ name = "Mnemo", email = "founders@getmnemo.xyz" }]
+keywords = ["memory", "llm", "benchmark", "evaluation", "getmnemo"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: Apache Software License",
@@ -28,7 +28,7 @@ dependencies = [
     "rich>=13.7.0",
     "httpx>=0.27.0",
     "datasets>=2.20.0",
-    "ledgermem>=0.1.0; python_version >= '3.10'",
+    "getmnemo>=0.1.0; python_version >= '3.10'",
 ]
 
 [project.optional-dependencies]
@@ -41,16 +41,16 @@ dev = [
 ]
 
 [project.scripts]
-ledgermem-eval = "ledgermem_eval.cli:cli"
+getmnemo-eval = "getmnemo_eval.cli:cli"
 
 [project.urls]
-Homepage = "https://github.com/ledgermem/ledgermem-eval"
-Documentation = "https://docs.proofly.dev"
-Repository = "https://github.com/ledgermem/ledgermem-eval"
-Issues = "https://github.com/ledgermem/ledgermem-eval/issues"
+Homepage = "https://github.com/getmnemo/getmnemo-eval"
+Documentation = "https://docs.getmnemo.xyz"
+Repository = "https://github.com/getmnemo/getmnemo-eval"
+Issues = "https://github.com/getmnemo/getmnemo-eval/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/ledgermem_eval"]
+packages = ["src/getmnemo_eval"]
 
 [tool.hatch.metadata]
 allow-direct-references = true

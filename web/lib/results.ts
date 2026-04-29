@@ -47,16 +47,16 @@ export type LeaderboardRow = {
   gitSha: string;
 };
 
-const BUCKET_URL = process.env.BUCKET_URL ?? "https://eval-results.proofly.dev";
+const BUCKET_URL = process.env.BUCKET_URL ?? "https://eval-results.getmnemo.xyz";
 
 const STATIC_FALLBACK: Run[] = [
   {
-    run_id: "demo-longmemeval-ledgermem",
+    run_id: "demo-longmemeval-getmnemo",
     benchmark: "longmemeval",
-    system: "ledgermem",
+    system: "getmnemo",
     k: 5,
     metrics: {
-      system: "ledgermem",
+      system: "getmnemo",
       benchmark: "longmemeval",
       k: 5,
       n_episodes: 10,

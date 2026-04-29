@@ -11,8 +11,8 @@ import abc
 import time
 from dataclasses import dataclass
 
-from ledgermem_eval.adapters.base import Adapter, MemoryItem
-from ledgermem_eval.scoring import EpisodeResult, RunRecord
+from getmnemo_eval.adapters.base import Adapter, MemoryItem
+from getmnemo_eval.scoring import EpisodeResult, RunRecord
 
 
 @dataclass(frozen=True)

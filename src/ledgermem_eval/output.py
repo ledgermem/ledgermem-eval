@@ -10,7 +10,7 @@ import uuid
 from dataclasses import asdict
 from pathlib import Path
 
-from ledgermem_eval.scoring import RunMetrics, RunRecord
+from getmnemo_eval.scoring import RunMetrics, RunRecord
 
 
 def write_results(
@@ -65,6 +65,6 @@ def _harness_version() -> str:
     try:
         from importlib.metadata import version
 
-        return version("ledgermem-eval")
+        return version("getmnemo-eval")
     except Exception:
         return "0.1.0"

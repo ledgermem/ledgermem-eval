@@ -26,8 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      LEDGERMEM_API_KEY: ${{ secrets.LEDGERMEM_API_KEY }}
-      LEDGERMEM_WORKSPACE_ID: ${{ secrets.LEDGERMEM_WORKSPACE_ID }}
+      GETMNEMO_API_KEY: ${{ secrets.GETMNEMO_API_KEY }}
+      GETMNEMO_WORKSPACE_ID: ${{ secrets.GETMNEMO_WORKSPACE_ID }}
       MEM0_API_KEY: ${{ secrets.MEM0_API_KEY }}
       ZEP_API_KEY: ${{ secrets.ZEP_API_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -49,7 +49,7 @@ jobs:
         run: |
           BENCH="${{ github.event.inputs.benchmark || 'longmemeval' }}"
           SYS="${{ github.event.inputs.systems || 'all' }}"
-          ledgermem-eval run --benchmark "$BENCH" --systems "$SYS" --output ./results
+          getmnemo-eval run --benchmark "$BENCH" --systems "$SYS" --output ./results
 
       - name: Publish to R2
         env:

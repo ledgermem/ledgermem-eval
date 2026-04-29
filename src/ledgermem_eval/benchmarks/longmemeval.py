@@ -7,8 +7,8 @@ harness still produces meaningful smoke-test numbers.
 
 from __future__ import annotations
 
-from ledgermem_eval.adapters.base import MemoryItem
-from ledgermem_eval.benchmarks.base import Benchmark, Question, Suite
+from getmnemo_eval.adapters.base import MemoryItem
+from getmnemo_eval.benchmarks.base import Benchmark, Question, Suite
 
 _FIXTURE_ITEMS: tuple[tuple[str, str], ...] = (
     ("lme-001", "User mentioned they prefer dark mode in IDEs and use VS Code."),

@@ -1,4 +1,4 @@
-"""RealAgentMem — LedgerMem's custom benchmark for real-agent task memory.
+"""RealAgentMem — Mnemo's custom benchmark for real-agent task memory.
 
 The suite focuses on cross-session task continuity: an agent works on a project
 over many sessions and must consistently recall earlier decisions, data, and
@@ -8,8 +8,8 @@ agent traffic.
 
 from __future__ import annotations
 
-from ledgermem_eval.adapters.base import MemoryItem
-from ledgermem_eval.benchmarks.base import Benchmark, Question, Suite
+from getmnemo_eval.adapters.base import MemoryItem
+from getmnemo_eval.benchmarks.base import Benchmark, Question, Suite
 
 _TASKS: tuple[tuple[str, str], ...] = (
     ("ram-001", "Project Helios: target ship date is 2026-09-15."),

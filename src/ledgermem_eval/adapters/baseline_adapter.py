@@ -9,7 +9,7 @@ from __future__ import annotations
 import re
 from collections import Counter
 
-from ledgermem_eval.adapters.base import Adapter, MemoryItem, SearchResult
+from getmnemo_eval.adapters.base import Adapter, MemoryItem, SearchResult
 
 _TOKENIZER = re.compile(r"[a-z0-9]+")
 

@@ -6,11 +6,11 @@ export default function HomePage() {
           Open benchmarks for LLM memory systems
         </h1>
         <p className="mt-4 max-w-2xl text-neutral-600">
-          LedgerMem Eval is a reproducible harness that compares memory systems
+          Mnemo Eval is a reproducible harness that compares memory systems
           across LongMemEval, LoCoMo, and our own RealAgentMem suite. Every
           number on this site can be regenerated from the
           <a
-            href="https://github.com/ledgermem/ledgermem-eval"
+            href="https://github.com/getmnemo/getmnemo-eval"
             className="underline"
           >
             {" "}
@@ -42,13 +42,13 @@ export default function HomePage() {
           </p>
         </a>
         <a
-          href="https://github.com/ledgermem/ledgermem-eval"
+          href="https://github.com/getmnemo/getmnemo-eval"
           className="rounded-lg border border-neutral-200 p-6 transition hover:border-neutral-400"
         >
           <h2 className="text-lg font-semibold">Reproduce</h2>
           <p className="mt-2 text-sm text-neutral-600">
             <code className="rounded bg-neutral-100 px-1 text-xs">
-              docker run ledgermem/eval
+              docker run getmnemo/eval
             </code>{" "}
             and you have the same numbers.
           </p>
