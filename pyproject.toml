@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "getmnemo-eval"
+name = "mnemo-eval"
 version = "0.1.0"
 description = "Public benchmark harness for memory systems (Mnemo, Mem0, Zep, OpenAI Assistants)"
 readme = "README.md"
